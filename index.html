@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nasi Goreng Ambyar — Enak, Nikmat, Mengenyangkan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- =====================
+       TOMBOL DARK / LIGHT
+       ===================== -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Ganti tema">
+    <span id="theme-icon">🌙</span>
+  </button>
+
+  <!-- =====================
+       HERO / LANDING
+       ===================== -->
+  <section class="hero" id="hero">
+
+    <!-- =====================
+         WOK ANIMATION
+         ===================== -->
+    <div class="wajan-scene" aria-hidden="true">
+      <div class="wajan-body">
+
+        <div class="steam">
+          <span class="puff puff-1"></span>
+          <span class="puff puff-2"></span>
+          <span class="puff puff-3"></span>
+          <span class="puff puff-4"></span>
+        </div>
+
+        <div class="wok-rim"></div>
+
+        <div class="wok-bowl">
+          <div class="wajan-food"></div>
+          <span class="grain g1"></span>
+          <span class="grain g2"></span>
+          <span class="grain g3"></span>
+          <span class="grain g4"></span>
+          <span class="grain g5"></span>
+        </div>
+
+        <div class="wok-handle"></div>
+        <div class="wok-fire"></div>
+
+      </div>
+    </div>
+
+    <h1 class="hero-title">Nasi Goreng <span>Ambyar!</span></h1>
+    <p class="hero-tagline">ENAK &bull; NIKMAT &bull; MENGENYANGKAN</p>
+
+    <!-- Social proof pill -->
+    <div class="hero-proof">
+      <span class="proof-stars" aria-label="Rating bintang lima">⭐⭐⭐⭐⭐</span>
+      <span class="proof-sep">·</span>
+      <span class="proof-text">100+ pelanggan puas</span>
+    </div>
+
+    <a href="#menu" class="cta-btn" id="cta-btn">Lihat Menu ↓</a>
+
+    <!-- Wave transition ke menu -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path class="wave-fill"
+          d="M0,48 C180,78 400,18 720,48 C960,70 1200,22 1440,46 L1440,80 L0,80 Z"/>
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- =====================
+       SECTION MENU
+       ===================== -->
+  <section class="menu-section" id="menu">
+
+    <div class="menu-header">
+      <p class="section-eyebrow">Pilihan Menu</p>
+      <h2 class="menu-title">Menu Pilihan</h2>
+      <p class="menu-tagline">Klik menu untuk lihat deskripsi lengkapnya ✨</p>
+    </div>
+
+    <!-- =====================
+         CATEGORY FILTER
+         ===================== -->
+    <div class="category-filter" id="category-filter" role="group" aria-label="Filter kategori menu">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="nasi-goreng">🍳 Nasi Goreng</button>
+      <button class="filter-btn" data-filter="mie">🍜 Mie</button>
+      <button class="filter-btn" data-filter="bihun">🫙 Bihun</button>
+      <button class="filter-btn" data-filter="kwetiaw">🥢 Kwetiaw</button>
+    </div>
+
+    <div class="menu-grid" id="menu-grid">
+
+      <!-- ===== NASI GORENG ===== -->
+
+      <article class="card"
+        data-name="Nasi Goreng Biasa"
+        data-price="Rp 15.000"
+        data-img="images/biasa.jpg"
+        data-bestseller="true"
+        data-category="nasi-goreng"
+        data-desc="Nasi goreng klasik dengan bumbu rempah pilihan yang kaya rasa. Disajikan dengan telur dadar lembut, acar timun segar, dan kerupuk renyah di sisinya. Sederhana tapi selalu bikin rindu — cocok untuk semua kalangan!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Biasa">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/biasa.jpg" alt="Nasi Goreng Biasa" loading="lazy" onerror="this.src='images/placeholder.jpg'" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Biasa</p>
+          <p class="card-desc-short">Bumbu rempah klasik + telur dadar + kerupuk</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 15.000</span>
+            <span class="card-tag">🍳 Klasik</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Sosis"
+        data-price="Rp 16.000"
+        data-img="images/sosis.jpg"
+        data-bestseller="false"
+        data-category="nasi-goreng"
+        data-desc="Nasi goreng bumbu khas warung dengan tambahan potongan sosis sapi yang juicy dan gurih. Tekstur sosis yang kenyal berpadu sempurna dengan nasi goreng yang harum dan beraroma. Favorit anak-anak maupun orang dewasa!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Sosis">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/sosis.jpg" alt="Nasi Goreng Sosis" loading="lazy" onerror="this.src='images/placeholder.jpg'" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Sosis</p>
+          <p class="card-desc-short">Sosis sapi juicy + bumbu khas warung</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🌭 Favorit</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Bakso"
+        data-price="Rp 16.000"
+        data-img="images/bakso.jpg"
+        data-bestseller="false"
+        data-category="nasi-goreng"
+        data-desc="Perpaduan unik nasi goreng gurih dengan bakso sapi kenyal berkuah. Setiap suapan menghadirkan rasa yang kaya — gurih, hangat, dan mengenyangkan. Pilihan sempurna untuk makan siang yang memuaskan!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Bakso">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/bakso.jpg" alt="Nasi Goreng Bakso" loading="lazy" onerror="this.src='images/placeholder.jpg'" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Bakso</p>
+          <p class="card-desc-short">Bakso sapi kenyal + nasi goreng gurih</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🔥 Laris</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Spesial"
+        data-price="Rp 20.000"
+        data-img="images/spesial.webp"
+        data-bestseller="true"
+        data-category="nasi-goreng"
+        data-desc="Paket paling komplit! Nasi goreng dengan telur mata sapi, potongan sosis, bakso sapi, dan ayam suwir — semua dalam satu porsi royal yang mengenyangkan. Untuk kamu yang mau yang PALING LENGKAP dan PALING ENAK!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Spesial">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/spesial.webp" alt="Nasi Goreng Spesial" loading="lazy" onerror="this.src='images/placeholder.jpg'" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Spesial</p>
+          <p class="card-desc-short">Telur + sosis + bakso + ayam suwir, komplit!</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 20.000</span>
+            <span class="card-tag">🌟 Spesial</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Pete"
+        data-price="Rp 16.000"
+        data-img="images/pete.jpg"
+        data-bestseller="false"
+        data-category="nasi-goreng"
+        data-desc="Nasi goreng spesial dengan pete segar yang harum dan khas. Bumbu rempah tradisional berpadu dengan cita rasa pete yang unik dan tajam — bikin ketagihan bagi pecinta pete sejati! Disajikan dengan telur dan kerupuk renyah."
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Pete">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/pete.jpg" alt="Nasi Goreng Pete" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌿</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Pete</p>
+          <p class="card-desc-short">Pete segar + bumbu rempah + telur</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🌿 Pete</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Kampung"
+        data-price="Rp 15.000"
+        data-img="images/kampung.jpg"
+        data-bestseller="false"
+        data-category="nasi-goreng"
+        data-desc="Nasi goreng ala kampung dengan bumbu sederhana namun otentik — perpaduan kecap manis, bawang merah, dan cabai rawit segar. Digoreng di atas wajan panas dengan api besar menghasilkan cita rasa smoky yang khas dan tak tertandingi."
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Kampung">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/kampung.jpg" alt="Nasi Goreng Kampung" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🏡</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Kampung</p>
+          <p class="card-desc-short">Bumbu kampung otentik + kecap + cabai rawit</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 15.000</span>
+            <span class="card-tag">🏡 Otentik</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Merah"
+        data-price="Rp 16.000"
+        data-img="images/merah.jpg"
+        data-bestseller="false"
+        data-category="nasi-goreng"
+        data-desc="Nasi goreng dengan bumbu merah khas yang kaya rempah dan sedikit pedas. Warna merahnya yang menggoda berasal dari cabai merah segar dan tomat pilihan. Rasanya gurih, pedas, dan smoky — pilihan sempurna untuk pecinta makanan bercita rasa kuat!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Merah">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/merah.jpg" alt="Nasi Goreng Merah" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌶️</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Merah</p>
+          <p class="card-desc-short">Bumbu merah pedas + cabai + tomat segar</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🌶️ Pedas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Nasi Goreng Ati Ampela"
+        data-price="Rp 17.000"
+        data-img="images/ati.jpg"
+        data-bestseller="false"
+        data-category="nasi-goreng"
+        data-desc="Nasi goreng istimewa dengan potongan hati dan ampela ayam yang empuk dan gurih. Dimasak dengan bumbu rempah pilihan hingga meresap sempurna. Tekstur kenyal hati dan ampela berpadu dengan nasi goreng yang lezat — kenikmatan yang tak biasa!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Nasi Goreng Ati Ampela">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/ati.jpg" alt="Nasi Goreng Ati Ampela" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🍗</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Nasi Goreng Ati Ampela</p>
+          <p class="card-desc-short">Hati & ampela ayam empuk + bumbu rempah</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 17.000</span>
+            <span class="card-tag">🍗 Spesial</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== MIE GORENG / REBUS ===== -->
+
+      <article class="card"
+        data-name="Mie Goreng/Rebus Ayam"
+        data-price="Rp 16.000"
+        data-img="images/mie-ayam.jpg"
+        data-bestseller="false"
+        data-category="mie"
+        data-desc="Mie goreng atau rebus pilihan kamu dengan topping ayam suwir yang lembut dan gurih. Bumbu khas warung meresap sempurna ke dalam mie yang kenyal. Bisa pilih goreng yang kering dan smoky, atau rebus yang kuahnya hangat dan menyegarkan!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Mie Goreng/Rebus Ayam">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/mie-ayam.jpg" alt="Mie Goreng/Rebus Ayam" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🍜</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Mie Goreng/Rebus Ayam</p>
+          <p class="card-desc-short">Ayam suwir gurih + pilihan goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🍜 Mie</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Mie Goreng/Rebus Sosis"
+        data-price="Rp 16.000"
+        data-img="images/mie-sosis.jpg"
+        data-bestseller="false"
+        data-category="mie"
+        data-desc="Mie goreng atau rebus dengan potongan sosis sapi yang juicy dan kenyal. Bumbu yang kaya rasa berpadu sempurna dengan tekstur mie dan sosis. Pilihan goreng untuk cita rasa kering yang smoky, atau rebus untuk kuah hangat yang menyegarkan!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Mie Goreng/Rebus Sosis">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/mie-sosis.jpg" alt="Mie Goreng/Rebus Sosis" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌭</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Mie Goreng/Rebus Sosis</p>
+          <p class="card-desc-short">Sosis sapi juicy + pilihan goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🌭 Favorit</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Mie Goreng/Rebus Bakso"
+        data-price="Rp 16.000"
+        data-img="images/mie-bakso.jpg"
+        data-bestseller="false"
+        data-category="mie"
+        data-desc="Mie goreng atau rebus dengan bakso sapi kenyal yang lezat. Perpaduan sempurna antara mie yang lentur dengan bakso yang gurih dan mengenyangkan. Pilih sesuai selera — goreng untuk rasa smoky kering, atau rebus dengan kuah kaldu gurih!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Mie Goreng/Rebus Bakso">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/mie-bakso.jpg" alt="Mie Goreng/Rebus Bakso" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🔮</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Mie Goreng/Rebus Bakso</p>
+          <p class="card-desc-short">Bakso sapi kenyal + pilihan goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🔥 Laris</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Mie Goreng/Rebus Ati Ampela"
+        data-price="Rp 17.000"
+        data-img="images/mie-ati-ampela.jpg"
+        data-bestseller="false"
+        data-category="mie"
+        data-desc="Mie goreng atau rebus dengan hati dan ampela ayam yang empuk dan meresap bumbu. Cita rasa yang khas dan unik — gurih, sedikit pedas, dan sangat mengenyangkan. Bisa goreng atau rebus sesuai selera kamu!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Mie Goreng/Rebus Ati Ampela">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/mie-ati-ampela.jpg" alt="Mie Goreng/Rebus Ati Ampela" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🍗</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Mie Goreng/Rebus Ati Ampela</p>
+          <p class="card-desc-short">Hati & ampela ayam + pilihan goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 17.000</span>
+            <span class="card-tag">🍗 Spesial</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Mie Goreng Komplit"
+        data-price="Rp 21.000"
+        data-img="images/mie-komplit.jpg"
+        data-bestseller="false"
+        data-category="mie"
+        data-desc="Mie goreng paling lengkap dengan topping ayam suwir, sosis sapi, bakso, dan telur mata sapi dalam satu porsi royal! Bumbu yang kaya rasa meresap ke setiap helai mie yang lentur dan kenyal. Satu porsi sudah bikin kamu kenyang seharian!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Mie Goreng Komplit">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/mie-komplit.jpg" alt="Mie Goreng Komplit" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌟</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Mie Goreng Komplit</p>
+          <p class="card-desc-short">Ayam + sosis + bakso + telur, semua ada!</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 21.000</span>
+            <span class="card-tag">🌟 Komplit</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== BIHUN GORENG ===== -->
+
+      <article class="card"
+        data-name="Bihun Goreng Ayam"
+        data-price="Rp 15.000"
+        data-img="images/bihun-ayam.jpg"
+        data-bestseller="false"
+        data-category="bihun"
+        data-desc="Bihun goreng dengan ayam suwir yang lembut dan gurih. Bihun yang ringan dan transparan menyerap bumbu dengan sempurna, menghasilkan cita rasa yang harum dan lezat. Disajikan dengan irisan daun bawang dan taoge segar yang renyah!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Bihun Goreng Ayam">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/bihun-ayam.jpg" alt="Bihun Goreng Ayam" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🫙</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Bihun Goreng Ayam</p>
+          <p class="card-desc-short">Bihun halus + ayam suwir + taoge segar</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 15.000</span>
+            <span class="card-tag">🫙 Ringan</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Bihun Goreng Sosis"
+        data-price="Rp 15.000"
+        data-img="images/bihun-sosis.jpg"
+        data-bestseller="false"
+        data-category="bihun"
+        data-desc="Bihun goreng dengan sosis sapi yang juicy dan kenyal. Perpaduan bihun yang halus dengan sosis yang gurih menciptakan tekstur yang menarik di setiap suapan. Bumbu khas warung yang meresap sempurna membuat hidangan ini tak terlupakan!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Bihun Goreng Sosis">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/bihun-sosis.jpg" alt="Bihun Goreng Sosis" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌭</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Bihun Goreng Sosis</p>
+          <p class="card-desc-short">Bihun halus + sosis sapi juicy + bumbu khas</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 15.000</span>
+            <span class="card-tag">🌭 Favorit</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Bihun Goreng Bakso"
+        data-price="Rp 15.000"
+        data-img="images/bihun-bakso.jpg"
+        data-bestseller="false"
+        data-category="bihun"
+        data-desc="Bihun goreng dengan bakso sapi kenyal yang lezat. Tekstur bihun yang lembut berpadu dengan bakso yang padat dan gurih — kombinasi yang mengenyangkan dan memuaskan. Bumbu rempah yang kaya rasa membuat setiap suapan terasa istimewa!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Bihun Goreng Bakso">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/bihun-bakso.jpg" alt="Bihun Goreng Bakso" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🔮</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Bihun Goreng Bakso</p>
+          <p class="card-desc-short">Bihun halus + bakso sapi kenyal</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 15.000</span>
+            <span class="card-tag">🔥 Laris</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Bihun Goreng Ati Ampela"
+        data-price="Rp 16.000"
+        data-img="images/bihun-ati-ampela.jpg"
+        data-bestseller="false"
+        data-category="bihun"
+        data-desc="Bihun goreng dengan hati dan ampela ayam yang empuk dan penuh rasa. Bumbu rempah yang meresap sempurna ke dalam bihun dan ati ampela menghasilkan cita rasa yang kaya dan otentik. Pilihan tepat bagi pecinta cita rasa tradisional yang autentik!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Bihun Goreng Ati Ampela">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/bihun-ati-ampela.jpg" alt="Bihun Goreng Ati Ampela" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🍗</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Bihun Goreng Ati Ampela</p>
+          <p class="card-desc-short">Bihun halus + hati & ampela ayam empuk</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🍗 Spesial</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Bihun Goreng Komplit"
+        data-price="Rp 20.000"
+        data-img="images/bihun-komplit.jpg"
+        data-bestseller="false"
+        data-category="bihun"
+        data-desc="Bihun goreng paling komplit dengan topping ayam suwir, sosis sapi, bakso, dan telur mata sapi dalam satu piring penuh! Bihun yang ringan menyerap semua bumbu dengan sempurna. Porsi mengenyangkan untuk kamu yang mau semuanya sekaligus!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Bihun Goreng Komplit">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/bihun-komplit.jpg" alt="Bihun Goreng Komplit" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌟</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Bihun Goreng Komplit</p>
+          <p class="card-desc-short">Ayam + sosis + bakso + telur, lengkap!</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 20.000</span>
+            <span class="card-tag">🌟 Komplit</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== KWETIAW GORENG / REBUS ===== -->
+
+      <article class="card"
+        data-name="Kwetiaw Goreng/Rebus Ayam"
+        data-price="Rp 16.000"
+        data-img="images/kwetiaw-ayam.jpg"
+        data-bestseller="false"
+        data-category="kwetiaw"
+        data-desc="Kwetiaw goreng atau rebus dengan topping ayam suwir yang lembut dan gurih. Kwetiaw yang lebar dan kenyal menyerap bumbu dengan sempurna, menghasilkan cita rasa yang kaya dan memuaskan. Pilih goreng yang smoky atau rebus dengan kuah kaldu hangat!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Kwetiaw Goreng/Rebus Ayam">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/kwetiaw-ayam.jpg" alt="Kwetiaw Goreng/Rebus Ayam" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🥢</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Kwetiaw Goreng/Rebus Ayam</p>
+          <p class="card-desc-short">Kwetiaw lebar + ayam suwir + goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🥢 Kwetiaw</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Kwetiaw Goreng/Rebus Sosis"
+        data-price="Rp 16.000"
+        data-img="images/kwetiaw-sosis.jpg"
+        data-bestseller="false"
+        data-category="kwetiaw"
+        data-desc="Kwetiaw goreng atau rebus dengan sosis sapi juicy yang menggugah selera. Lebar kwetiaw yang khas berpadu dengan sosis yang gurih dan kenyal menciptakan tekstur luar biasa di setiap suapan. Tersedia pilihan goreng kering atau rebus berkuah!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Kwetiaw Goreng/Rebus Sosis">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/kwetiaw-sosis.jpg" alt="Kwetiaw Goreng/Rebus Sosis" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌭</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Kwetiaw Goreng/Rebus Sosis</p>
+          <p class="card-desc-short">Kwetiaw lebar + sosis sapi + goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🌭 Favorit</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Kwetiaw Goreng/Rebus Bakso"
+        data-price="Rp 16.000"
+        data-img="images/kwetiaw-bakso.jpg"
+        data-bestseller="false"
+        data-category="kwetiaw"
+        data-desc="Kwetiaw goreng atau rebus dengan bakso sapi kenyal yang lezat. Perpaduan kwetiaw yang lebar dengan bakso yang padat menghasilkan sajian yang mengenyangkan dan memuaskan. Goreng untuk cita rasa kering, rebus untuk kuah kaldu gurih yang hangat!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Kwetiaw Goreng/Rebus Bakso">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/kwetiaw-bakso.jpg" alt="Kwetiaw Goreng/Rebus Bakso" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🔮</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Kwetiaw Goreng/Rebus Bakso</p>
+          <p class="card-desc-short">Kwetiaw lebar + bakso sapi + goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 16.000</span>
+            <span class="card-tag">🔥 Laris</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Kwetiaw Goreng/Rebus Ati Ampela"
+        data-price="Rp 17.000"
+        data-img="images/kwetiaw-ati-ampela.jpg"
+        data-bestseller="false"
+        data-category="kwetiaw"
+        data-desc="Kwetiaw goreng atau rebus dengan hati dan ampela ayam yang empuk dan meresap bumbu rempah. Kwetiaw yang lebar berpadu dengan ati ampela yang gurih menghasilkan sajian yang khas dan tak terlupakan. Tersedia goreng atau rebus sesuai selera!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Kwetiaw Goreng/Rebus Ati Ampela">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/kwetiaw-ati-ampela.jpg" alt="Kwetiaw Goreng/Rebus Ati Ampela" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🍗</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Kwetiaw Goreng/Rebus Ati Ampela</p>
+          <p class="card-desc-short">Kwetiaw lebar + hati & ampela + goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 17.000</span>
+            <span class="card-tag">🍗 Spesial</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card"
+        data-name="Kwetiaw Goreng/Rebus Komplit"
+        data-price="Rp 21.000"
+        data-img="images/kwetiaw-komplit.jpg"
+        data-bestseller="false"
+        data-category="kwetiaw"
+        data-desc="Kwetiaw goreng atau rebus paling lengkap dengan topping ayam suwir, sosis sapi, bakso sapi, dan telur mata sapi dalam satu porsi jumbo! Kwetiaw yang lebar menyerap semua bumbu dengan sempurna. Tersedia goreng kering atau rebus berkuah — pilihan terbaik untuk selera besar!"
+        tabindex="0"
+        role="button"
+        aria-label="Lihat detail Kwetiaw Goreng/Rebus Komplit">
+        <button class="like-btn" aria-label="Like menu ini">🤍</button>
+        <div class="card-img-wrap">
+          <img src="images/kwetiaw-komplit.jpg" alt="Kwetiaw Goreng/Rebus Komplit" loading="lazy" onerror="this.style.display='none'" />
+          <div class="card-img-placeholder" aria-hidden="true">🌟</div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">Kwetiaw Goreng/Rebus Komplit</p>
+          <p class="card-desc-short">Ayam + sosis + bakso + telur + goreng / rebus</p>
+          <div class="card-footer">
+            <span class="card-price">Rp 21.000</span>
+            <span class="card-tag">🌟 Komplit</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Empty state (shown when filter has no results) -->
+    <p class="menu-empty" id="menu-empty" hidden>Tidak ada menu dalam kategori ini.</p>
+
+  </section>
+
+  <!-- Wave: menu → order -->
+  <div class="section-wave sw-to-order" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path class="wave-fill-order"
+        d="M0,24 C360,72 800,0 1080,40 C1260,66 1380,20 1440,36 L1440,80 L0,80 Z"/>
+    </svg>
+  </div>
+
+  <!-- =====================
+       SECTION ORDER
+       ===================== -->
+  <section class="order-section" id="order">
+    <div class="container">
+
+      <div class="section-header">
+        <p class="section-eyebrow">Tersedia Di</p>
+        <h2 class="section-title">Mau Pesan Sekarang?</h2>
+        <p class="section-sub">Pilih platform favoritmu, kami siap melayani 🛵</p>
+      </div>
+
+      <div class="order-grid">
+
+        <a href="https://gofood.co.id"
+           target="_blank" rel="noopener noreferrer"
+           class="order-card order-gojek"
+           aria-label="Pesan via GoFood Gojek">
+          <div class="order-icon-box">
+            <span class="order-emoji" aria-hidden="true">🛵</span>
+          </div>
+          <div class="order-card-info">
+            <strong class="order-platform-name">GoFood</strong>
+            <span class="order-platform-sub">Pesan via Gojek</span>
+          </div>
+          <svg class="order-chevron" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </a>
+
+        <a href="https://wa.me/6281289859371"
+           target="_blank" rel="noopener noreferrer"
+           class="order-card order-whatsapp"
+           aria-label="Pesan via WhatsApp">
+          <div class="order-icon-box">
+            <span class="order-emoji" aria-hidden="true">💬</span>
+          </div>
+          <div class="order-card-info">
+            <strong class="order-platform-name">WhatsApp</strong>
+            <span class="order-platform-sub">Chat &amp; Order langsung</span>
+          </div>
+          <svg class="order-chevron" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </a>
+
+        <a href="https://food.grab.com"
+           target="_blank" rel="noopener noreferrer"
+           class="order-card order-grab"
+           aria-label="Pesan via GrabFood">
+          <div class="order-icon-box">
+            <span class="order-emoji" aria-hidden="true">🍱</span>
+          </div>
+          <div class="order-card-info">
+            <strong class="order-platform-name">GrabFood</strong>
+            <span class="order-platform-sub">Pesan via Grab</span>
+          </div>
+          <svg class="order-chevron" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </a>
+
+        <a href="https://shopee.co.id/food"
+           target="_blank" rel="noopener noreferrer"
+           class="order-card order-shopee"
+           aria-label="Pesan via ShopeeFood">
+          <div class="order-icon-box">
+            <span class="order-emoji" aria-hidden="true">🛒</span>
+          </div>
+          <div class="order-card-info">
+            <strong class="order-platform-name">ShopeeFood</strong>
+            <span class="order-platform-sub">Pesan via Shopee</span>
+          </div>
+          <svg class="order-chevron" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: order → bizinfo -->
+  <div class="section-wave sw-to-bizinfo" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path class="wave-fill-bizinfo"
+        d="M0,55 C280,18 720,78 1080,38 C1260,20 1380,58 1440,42 L1440,80 L0,80 Z"/>
+    </svg>
+  </div>
+
+  <!-- =====================
+       BUSINESS INFO
+       ===================== -->
+  <section class="bizinfo-section" id="info">
+    <div class="container">
+
+      <div class="section-header">
+        <p class="section-eyebrow eyebrow-light">Temukan Kami</p>
+        <h2 class="section-title title-light">Informasi Restoran</h2>
+        <p class="section-sub sub-light">Semua yang perlu kamu tahu tentang kami</p>
+      </div>
+
+      <div class="bizinfo-grid">
+
+        <div class="biz-card">
+          <div class="biz-icon-wrap"><span aria-hidden="true">🕐</span></div>
+          <h3 class="biz-card-title">Jam Operasional</h3>
+          <div class="biz-hours">
+            <div class="hour-row">
+              <span class="hour-day">Setiap Hari</span>
+              <span class="hour-time">24 JAM</span>
+            </div>
+          </div>
+          <span class="biz-badge-open">🟢&nbsp;&nbsp;Buka Setiap Hari</span>
+        </div>
+
+        <div class="biz-card">
+          <div class="biz-icon-wrap"><span aria-hidden="true">📍</span></div>
+          <h3 class="biz-card-title">Lokasi Kami</h3>
+          <p class="biz-address">
+            Kp. Kalipaten RT 01 RW 04,Depan Musholla Al-Amin,<br>
+            Kecamatan Kelapa Dua,Kabupaten Tangerang,Kelurahan Pakulonan Barat 2,<br>
+            Banten 15810
+          </p>
+          <a href="https://maps.app.goo.gl/tWdRbXLHGURCpMUj8" target="_blank" rel="noopener noreferrer"
+             class="biz-map-link">Buka di Google Maps →</a>
+        </div>
+
+        <div class="biz-card biz-card-featured">
+          <div class="biz-icon-wrap"><span aria-hidden="true">⭐</span></div>
+          <h3 class="biz-card-title">Kenapa Pilih Kami?</h3>
+          <ul class="biz-reasons">
+            <li><span class="reason-check" aria-hidden="true">✅</span>Bahan segar setiap hari</li>
+            <li><span class="reason-check" aria-hidden="true">✅</span>Rasa khas nasi goreng rumahan</li>
+            <li><span class="reason-check" aria-hidden="true">✅</span>Harga bersahabat untuk semua</li>
+            <li><span class="reason-check" aria-hidden="true">✅</span>Enak &amp; mengenyangkan</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="wa-cta-wrap">
+        <a href="https://wa.me/6281289859371"
+           target="_blank" rel="noopener noreferrer"
+           class="wa-cta-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Chat via WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================
+       FOOTER
+       ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <p class="footer-logo">🍳 Nasi Goreng Ambyar</p>
+          <p class="footer-brand-sub">Enak &bull; Nikmat &bull; Mengenyangkan</p>
+        </div>
+
+        <nav class="footer-social" aria-label="Media sosial">
+
+          <a href="https://instagram.com/nasigorengambyar"
+             target="_blank" rel="noopener noreferrer"
+             class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <a href="https://tiktok.com/@nasigorengambyar"
+             target="_blank" rel="noopener noreferrer"
+             class="social-btn" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.19a8.28 8.28 0 004.85 1.56V7.3a4.85 4.85 0 01-1.08-.61z"/>
+            </svg>
+          </a>
+
+          <a href="https://wa.me/6281289859371"
+             target="_blank" rel="noopener noreferrer"
+             class="social-btn" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+
+          <a href="https://maps.app.goo.gl/tWdRbXLHGURCpMUj8"
+             target="_blank" rel="noopener noreferrer"
+             class="social-btn" aria-label="Google Maps">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
+            </svg>
+          </a>
+
+        </nav>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <p class="footer-copy">
+        &copy; 2026 Nasi Goreng Ambyar &mdash; Dibuat dengan cinta ❤️ 
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- =====================
+       MODAL DETAIL MENU
+       ===================== -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Tutup modal">✕</button>
+      <div class="modal-img-wrap">
+        <img id="modal-img" src="" alt="" />
+        <div class="modal-img-placeholder" id="modal-img-placeholder" aria-hidden="true"></div>
+      </div>
+      <div class="modal-body">
+        <span id="modal-bs-badge" class="bs-badge" hidden>⭐ Best Seller</span>
+        <h2 id="modal-name" class="modal-name"></h2>
+        <p id="modal-price" class="modal-price"></p>
+        <p id="modal-desc" class="modal-desc"></p>
+        <a href="https://wa.me/6281289859371"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="gobiz-btn modal-gobiz-btn">
+          💬 Pesan via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
