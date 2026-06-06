@@ -1000,4 +1000,9 @@ html = r"""<!DOCTYPE html>
 
   <script src="script.js"></script>
 </body>
-</html>
+</html>"""
+
+with open('/mnt/user-data/outputs/index.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+print("index.html written:", len(html), "chars")
+PYEOF
