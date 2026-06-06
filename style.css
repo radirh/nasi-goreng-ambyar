@@ -650,6 +650,7 @@ body::before {
 .card:nth-child(24) { animation-delay: 0.30s; }
 .card:nth-child(25) { animation-delay: 0.35s; }
 
+/* SESUDAH */
 .card::after {
   content: '';
   position: absolute;
@@ -661,8 +662,9 @@ body::before {
   );
   opacity: 0;
   transition: opacity 0.4s ease;
-  pointer-events: none;
+  pointer-events: none;  /* tidak boleh intercept klik */
   border-radius: inherit;
+  z-index: 1;            /* di bawah like-btn */
 }
 
 .card:hover::after { opacity: 1; }
@@ -790,6 +792,7 @@ body::before {
 /* ============================================================
    14. LIKE BUTTON
    ============================================================ */
+/* SESUDAH */
 .like-btn {
   all: unset;
   position: absolute;
@@ -807,7 +810,9 @@ body::before {
   font-size: 17px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s var(--spring);
-  z-index: 3;
+  z-index: 10;           /* naikan dari 3 → 10 */
+  pointer-events: all;   /* pastikan selalu bisa diklik */
+  -webkit-tap-highlight-color: transparent; /* fix mobile tap */
 }
 
 [data-theme="dark"] .like-btn {
@@ -1416,4 +1421,52 @@ body::before {
 
 @media (max-width: 360px) {
   .menu-grid { grid-template-columns: 1fr; }
+}
+/* ============================================================
+   23. FAVORIT SECTION
+   ============================================================ */
+
+.fav-section {
+  position: relative;
+  z-index: 1;
+  padding: 64px 24px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fav-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Garis pemisah bawah favorit → menu */
+.fav-section::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 4px;
+  margin: 48px auto 0;
+  opacity: 0.35;
+}
+
+/* Pesan "belum ada favorit" */
+.fav-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 32px 0 16px;
+  opacity: 0.70;
+}
+
+/* Grid favorit identik dengan menu-grid, tapi pakai id berbeda */
+#fav-grid {
+  margin-bottom: 0;
+}
+
+/* Animasi masuk kartu favorit */
+#fav-grid .card {
+  animation: fadeUp 0.55s var(--ease-out) both;
 }

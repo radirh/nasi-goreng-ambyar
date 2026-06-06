@@ -8,9 +8,9 @@
    ============================================================ */
 
 function toggleTheme() {
-  const html      = document.documentElement;
-  const icon      = document.getElementById('theme-icon');
-  const isDark    = html.getAttribute('data-theme') === 'dark';
+  const html   = document.documentElement;
+  const icon   = document.getElementById('theme-icon');
+  const isDark = html.getAttribute('data-theme') === 'dark';
 
   if (isDark) {
     html.setAttribute('data-theme', 'light');
@@ -33,9 +33,7 @@ function applySavedTheme() {
 
 function initThemeToggle() {
   const btn = document.getElementById('theme-toggle');
-  if (btn) {
-    btn.addEventListener('click', toggleTheme);
-  }
+  if (btn) btn.addEventListener('click', toggleTheme);
 }
 
 
@@ -50,49 +48,203 @@ function initSmoothScroll() {
   ctaBtn.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.getElementById('menu');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
 
 /* ============================================================
-   3. CARDS
+   3. FAVORITES — localStorage
+   ============================================================ */
+
+const FAVORITES_KEY = 'nga_favorites';
+
+function getFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveFavorites(favs) {
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favs));
+}
+
+function isFavorited(name) {
+  return getFavorites().includes(name);
+}
+
+function toggleFavorite(name) {
+  let favs = getFavorites();
+  if (favs.includes(name)) {
+    favs = favs.filter(function (n) { return n !== name; });
+  } else {
+    favs.push(name);
+  }
+  saveFavorites(favs);
+  return favs.includes(name);
+}
+
+
+/* ============================================================
+   4. HANDLE KLIK LIKE — fungsi terpusat
+   Dipanggil dari card asli maupun clone favorit
+   ============================================================ */
+
+function handleLikeClick(btn, card, isClone, originalCard) {
+  var name = card ? card.getAttribute('data-name') : null;
+  if (!name) return;
+
+  var isNowFav = toggleFavorite(name);
+
+  /* Update tombol yang diklik */
+  btn.textContent = isNowFav ? '❤️' : '🤍';
+
+  /* Animasi pop */
+  btn.classList.remove('liked');
+  void btn.offsetWidth; /* reflow untuk restart animasi */
+  btn.classList.add('liked');
+
+  /* Sinkron tombol di card ASLI (menu-grid) */
+  var sourceCard = isClone ? originalCard : card;
+  if (sourceCard) {
+    var origBtn = sourceCard.querySelector('.like-btn');
+    if (origBtn && origBtn !== btn) {
+      origBtn.textContent = isNowFav ? '❤️' : '🤍';
+    }
+  }
+
+  showToast(isNowFav ? 'Ditambahkan ke favorit! ❤️' : 'Dihapus dari favorit 🤍');
+
+  /* Re-render section favorit */
+  setTimeout(buildFavoritesSection, 350);
+}
+
+
+/* ============================================================
+   5. FAVORIT SECTION — render ulang
+   ============================================================ */
+
+function buildFavoritesSection() {
+  var favs     = getFavorites();
+  var grid     = document.getElementById('fav-grid');
+  var emptyMsg = document.getElementById('fav-empty');
+  if (!grid || !emptyMsg) return;
+
+  grid.innerHTML = '';
+
+  if (favs.length === 0) {
+    grid.style.display = 'none';
+    emptyMsg.removeAttribute('hidden');
+    return;
+  }
+
+  emptyMsg.setAttribute('hidden', '');
+  grid.style.display = '';
+
+  var allCards = document.querySelectorAll('.menu-grid .card');
+  var found    = 0;
+
+  allCards.forEach(function (originalCard) {
+    var name = originalCard.getAttribute('data-name');
+    if (!favs.includes(name)) return;
+
+    var clone = originalCard.cloneNode(true);
+    clone.classList.remove('card-hidden');
+
+    /* Reset animasi clone */
+    clone.style.animationDelay = (found * 0.08) + 's';
+
+    /* Pastikan tombol hati clone tampil ❤️ */
+    var cloneBtn = clone.querySelector('.like-btn');
+    if (cloneBtn) {
+      cloneBtn.textContent = '❤️';
+
+      /* ✅ FIX: pasang listener langsung di elemen, bukan delegate */
+      cloneBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        handleLikeClick(cloneBtn, clone, true, originalCard);
+      });
+    }
+
+    /* Klik card clone → buka modal (pakai data originalCard) */
+    clone.addEventListener('click', function (e) {
+      if (e.target.closest('.like-btn')) return;
+      openModal(originalCard);
+    });
+
+    clone.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(originalCard);
+      }
+    });
+
+    grid.appendChild(clone);
+    found++;
+  });
+
+  if (found === 0) {
+    grid.style.display = 'none';
+    emptyMsg.removeAttribute('hidden');
+  }
+}
+
+
+/* ============================================================
+   6. CARDS — inisialisasi card di menu-grid
    ============================================================ */
 
 function initCards() {
-  const cards = document.querySelectorAll('.card');
+  var cards = document.querySelectorAll('.menu-grid .card');
 
   cards.forEach(function (card) {
+    var name = card.getAttribute('data-name');
+
+    /* Best seller ribbon */
     if (card.getAttribute('data-bestseller') === 'true') {
-      const ribbon = document.createElement('span');
-      ribbon.className = 'card-ribbon';
+      var ribbon       = document.createElement('span');
+      ribbon.className   = 'card-ribbon';
       ribbon.textContent = '⭐ Best Seller';
       card.appendChild(ribbon);
     }
 
-    // Handle card-level image vs placeholder visibility
-    const cardImg         = card.querySelector('.card-img-wrap img');
-    const cardPlaceholder = card.querySelector('.card-img-placeholder');
+    /* Pulihkan status favorit */
+    var likeBtn = card.querySelector('.like-btn');
+    if (likeBtn) {
+      likeBtn.textContent = isFavorited(name) ? '❤️' : '🤍';
+
+      /* ✅ FIX: listener langsung di tombol, bukan delegate */
+      likeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        handleLikeClick(likeBtn, card, false, null);
+      });
+    }
+
+    /* Image vs placeholder */
+    var cardImg         = card.querySelector('.card-img-wrap img');
+    var cardPlaceholder = card.querySelector('.card-img-placeholder');
 
     if (cardImg && cardPlaceholder) {
-      // If image already loaded from cache (complete + no error)
       if (cardImg.complete && cardImg.naturalWidth > 0) {
-        cardImg.style.display = '';
+        cardImg.style.display         = '';
         cardPlaceholder.style.display = 'none';
       } else {
         cardImg.addEventListener('load', function () {
-          cardImg.style.display = '';
+          cardImg.style.display         = '';
           cardPlaceholder.style.display = 'none';
         });
         cardImg.addEventListener('error', function () {
-          cardImg.style.display = 'none';
+          cardImg.style.display         = 'none';
           cardPlaceholder.style.display = 'flex';
         });
       }
     }
 
+    /* Klik card → modal */
     card.addEventListener('click', function (e) {
       if (e.target.closest('.like-btn')) return;
       openModal(card);
@@ -109,29 +261,24 @@ function initCards() {
 
 
 /* ============================================================
-   4. MODAL
+   7. MODAL
    ============================================================ */
 
 function openModal(card) {
-  const overlay         = document.getElementById('modal-overlay');
-  const img             = document.getElementById('modal-img');
-  const imgPlaceholder  = document.getElementById('modal-img-placeholder');
-  const bsBadge         = document.getElementById('modal-bs-badge');
-  const name            = document.getElementById('modal-name');
-  const price           = document.getElementById('modal-price');
-  const desc            = document.getElementById('modal-desc');
+  var overlay        = document.getElementById('modal-overlay');
+  var img            = document.getElementById('modal-img');
+  var imgPlaceholder = document.getElementById('modal-img-placeholder');
+  var bsBadge        = document.getElementById('modal-bs-badge');
+  var name           = document.getElementById('modal-name');
+  var price          = document.getElementById('modal-price');
+  var desc           = document.getElementById('modal-desc');
 
-  const dataName        = card.getAttribute('data-name');
-  const dataPrice       = card.getAttribute('data-price');
-  const dataImg         = card.getAttribute('data-img');
-  const dataBestseller  = card.getAttribute('data-bestseller');
-  const dataDesc        = card.getAttribute('data-desc');
+  var dataName       = card.getAttribute('data-name');
+  var dataPrice      = card.getAttribute('data-price');
+  var dataImg        = card.getAttribute('data-img');
+  var dataBestseller = card.getAttribute('data-bestseller');
+  var dataDesc       = card.getAttribute('data-desc');
 
-  // Grab the placeholder emoji from the card (first .card-img-placeholder found)
-  const cardPlaceholder = card.querySelector('.card-img-placeholder');
-  const placeholderEmoji = cardPlaceholder ? cardPlaceholder.textContent : '';
-
-  // Set modal image — show placeholder emoji if image fails
   img.style.display = '';
   img.src           = dataImg || '';
   img.alt           = dataName || '';
@@ -139,7 +286,7 @@ function openModal(card) {
   img.onerror = function () {
     img.style.display = 'none';
     if (imgPlaceholder) {
-      imgPlaceholder.textContent = placeholderEmoji;
+      imgPlaceholder.textContent   = '🍳';
       imgPlaceholder.style.display = 'flex';
     }
   };
@@ -149,20 +296,19 @@ function openModal(card) {
     if (imgPlaceholder) imgPlaceholder.style.display = 'none';
   };
 
-  // If src is empty from the start, show placeholder immediately
   if (!dataImg) {
     img.style.display = 'none';
     if (imgPlaceholder) {
-      imgPlaceholder.textContent = placeholderEmoji;
+      imgPlaceholder.textContent   = '🍳';
       imgPlaceholder.style.display = 'flex';
     }
   } else {
     if (imgPlaceholder) imgPlaceholder.style.display = 'none';
   }
 
-  name.textContent  = dataName || '-';
+  name.textContent  = dataName  || '-';
   price.textContent = dataPrice || '-';
-  desc.textContent  = dataDesc || '';
+  desc.textContent  = dataDesc  || '';
 
   if (dataBestseller === 'true') {
     bsBadge.removeAttribute('hidden');
@@ -175,75 +321,42 @@ function openModal(card) {
 }
 
 function closeModal() {
-  const overlay = document.getElementById('modal-overlay');
+  var overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('open');
   document.body.style.overflow = '';
 }
 
 function initModal() {
-  const overlay   = document.getElementById('modal-overlay');
-  const closeBtn  = document.getElementById('modal-close');
-  const modalBox  = document.querySelector('.modal-box');
+  var overlay  = document.getElementById('modal-overlay');
+  var closeBtn = document.getElementById('modal-close');
+  var modalBox = document.querySelector('.modal-box');
 
   closeBtn.addEventListener('click', closeModal);
 
   overlay.addEventListener('click', function (e) {
-    if (!modalBox.contains(e.target)) {
-      closeModal();
-    }
+    if (!modalBox.contains(e.target)) closeModal();
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
+    if (e.key === 'Escape') closeModal();
   });
 }
 
 
 /* ============================================================
-   5. LIKE BUTTONS
+   8. TOAST
    ============================================================ */
 
-function initLikeButtons() {
-  const grid = document.querySelector('.menu-grid');
-  if (!grid) return;
-
-  grid.addEventListener('click', function (e) {
-    const btn = e.target.closest('.like-btn');
-    if (!btn) return;
-
-    e.stopPropagation();
-
-    if (btn.textContent.trim() === '🤍') {
-      btn.textContent = '❤️';
-      showToast('Ditambahkan ke favorit! ❤️');
-    } else {
-      btn.textContent = '🤍';
-      showToast('Dihapus dari favorit 🤍');
-    }
-
-    btn.classList.remove('liked');
-    void btn.offsetWidth;
-    btn.classList.add('liked');
-  });
-}
-
-
-/* ============================================================
-   6. TOAST
-   ============================================================ */
-
-let toastTimer = null;
+var toastTimer = null;
 
 function showToast(pesan) {
-  const existing = document.getElementById('toast');
+  var existing = document.getElementById('toast');
   if (existing) {
     existing.remove();
     clearTimeout(toastTimer);
   }
 
-  const toast = document.createElement('div');
+  var toast       = document.createElement('div');
   toast.id          = 'toast';
   toast.className   = 'toast';
   toast.textContent = pesan;
@@ -265,47 +378,37 @@ function showToast(pesan) {
 
 
 /* ============================================================
-   7. CATEGORY FILTER
-   ============================================================
-   - Reads data-category attribute on each .card
-   - Toggles .card-hidden class for non-matching cards
-   - Updates active state on filter buttons
-   - Shows/hides empty-state message
-   - Re-applies stagger animation delay so hidden→visible
-     cards animate in cleanly
+   9. CATEGORY FILTER
    ============================================================ */
 
 function initCategoryFilter() {
-  const filterContainer = document.getElementById('category-filter');
+  var filterContainer = document.getElementById('category-filter');
   if (!filterContainer) return;
 
-  const filterBtns  = filterContainer.querySelectorAll('.filter-btn');
-  const cards       = document.querySelectorAll('.menu-grid .card');
-  const emptyMsg    = document.getElementById('menu-empty');
+  var filterBtns = filterContainer.querySelectorAll('.filter-btn');
+  var cards      = document.querySelectorAll('.menu-grid .card');
+  var emptyMsg   = document.getElementById('menu-empty');
 
   filterBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      const filter = btn.getAttribute('data-filter');
+      var filter = btn.getAttribute('data-filter');
 
-      // Update active button
       filterBtns.forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
 
-      // Filter cards
-      let visibleIndex = 0;
-      let anyVisible = false;
+      var visibleIndex = 0;
+      var anyVisible   = false;
 
       cards.forEach(function (card) {
-        const category = card.getAttribute('data-category') || 'all';
-        const show     = filter === 'all' || category === filter;
+        var category = card.getAttribute('data-category') || 'all';
+        var show     = filter === 'all' || category === filter;
 
         if (show) {
           card.classList.remove('card-hidden');
-          // Re-stagger the animation for newly shown cards
           card.style.animationDelay = (visibleIndex * 0.07) + 's';
-          card.style.animation = 'none';
-          void card.offsetWidth; // reflow
-          card.style.animation = '';
+          card.style.animation      = 'none';
+          void card.offsetWidth;
+          card.style.animation      = '';
           visibleIndex++;
           anyVisible = true;
         } else {
@@ -313,24 +416,22 @@ function initCategoryFilter() {
         }
       });
 
-      // Empty state
-      if (emptyMsg) {
-        emptyMsg.hidden = anyVisible;
-      }
+      if (emptyMsg) emptyMsg.hidden = anyVisible;
     });
   });
 }
 
 
 /* ============================================================
-   8. INIT
+   10. INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
   applySavedTheme();
   initThemeToggle();
   initSmoothScroll();
-  initCards();
+  initCards();          /* ← sudah include listener like */
   initModal();
-  initLikeButtons();
+  /* initLikeButtons() DIHAPUS — sudah digabung ke initCards */
   initCategoryFilter();
+  buildFavoritesSection();
 });
